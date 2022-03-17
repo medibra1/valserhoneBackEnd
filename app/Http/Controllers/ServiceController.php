@@ -128,12 +128,5 @@ class ServiceController extends Controller
         }
 
     }
-
-    /* API */
-    public function indexServiceApi()
-    {
-        $services = Service::all();
-        return response()->json($services);
-    }
-    /* API */
+    
 }

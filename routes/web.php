@@ -54,5 +54,3 @@ Route::post('/store_devis', 'App\Http\Controllers\ClientController@storeDevis');
 Route::post('/send_contact', 'App\Http\Controllers\ClientController@sendContact');
 Route::get('/send_contact', 'App\Http\Controllers\ClientController@sendContact');
 
-
-

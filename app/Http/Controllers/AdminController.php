@@ -135,10 +135,4 @@ class AdminController extends Controller
         //
     }
 
-    public function companyInfoApi()
-    {
-        $information = Company::first();
-        return response()->json($information);
-    }
-
 }

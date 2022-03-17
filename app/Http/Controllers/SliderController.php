@@ -118,29 +118,4 @@ class SliderController extends Controller
         return redirect('/sliders')->with('status', 'Le slider a été supprimé avec succes !');
     }
 
-
-    /* API FUNCTION */
-    public function indexSliderApi() {
-        $sliders = Slider::all();
-        return response()->json($sliders);
-    }
-
-    public function downloadFile($file)
-    {
-        $filename = $file;
-        $path = public_path('storage/slider_images/' . $filename);
-
-        if (!File::exists($path)) {
-            abort(404);
-        }
-
-        $file = File::get($path);
-        $type = File::mimeType($path);
-
-        $response = Response::make($file, 200);
-        $response->header("Content-Type", $type);
-        return $response;
-
-    }
-
 }

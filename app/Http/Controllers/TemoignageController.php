@@ -134,27 +134,4 @@ class TemoignageController extends Controller
         return back()->with('status', 'Le temoignage a été supprimé avec succes !');
     }
 
-    public function indexTemoignageApi()
-    {
-        $temoignages = Temoignage::all();
-        return response()->json($temoignages);
-    }
-    public function downloadFile($file)
-    {
-        $filename = $file;
-        $path = public_path('storage/pictures/' . $filename);
-
-        if (!File::exists($path)) {
-            abort(404);
-        }
-
-        $file = File::get($path);
-        $type = File::mimeType($path);
-
-        $response = Response::make($file, 200);
-        $response->header("Content-Type", $type);
-        return $response;
-
-    }
-
 }
