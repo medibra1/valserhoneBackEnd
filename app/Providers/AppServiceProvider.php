@@ -26,11 +26,16 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         View()->composer(
-            'layouts.client_template',
+            /* 'layouts.client_template',
             function ($view) {
                 $information = Company::all();
                 $services = Service::all();
                 $view->with('information', $information)->with('services', $services);
+            } */
+            'auth.login',
+            function ($view) {
+                $information = Company::get()->first();
+                $view->with('information', $information);
             }
         );
     }

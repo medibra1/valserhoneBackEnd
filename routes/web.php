@@ -13,16 +13,22 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
+/* Route::get('/', function () {
     return view('welcome');
-});
-Route::get('contact_mail', function () {
-    return view('client.contact_mail');
-});
+}); */
 
 /* Route::get('/', function () {
     return redirect('accueil');
 }); */
+Route::get('/', function () {
+    return redirect('admin');
+});
+Route::get('/home', function () {
+    return redirect('admin');
+});
+
+Route::group(['middleware' => 'auth'], function(){ // Satart Middleware
+
 Route::resource('/admin', 'App\Http\Controllers\AdminController');
 
 Route::resource('/sliders', 'App\Http\Controllers\SliderController');
@@ -47,6 +53,7 @@ Route::get('/change_tem_status/{id}', 'App\Http\Controllers\TemoignageController
 Route::resource('/nouvelles', 'App\Http\Controllers\NouvelleController');
 Route::get('/change_new_status/{id}', 'App\Http\Controllers\NouvelleController@change_new_status');
 
+}); // end middleware
 
 Route::get('/accueil', 'App\Http\Controllers\ClientController@index');
 Route::get('/devis', 'App\Http\Controllers\ClientController@devis');
@@ -54,3 +61,6 @@ Route::post('/store_devis', 'App\Http\Controllers\ClientController@storeDevis');
 Route::post('/send_contact', 'App\Http\Controllers\ClientController@sendContact');
 Route::get('/send_contact', 'App\Http\Controllers\ClientController@sendContact');
 
+Auth::routes();
+
+//Route::get('/home', 'App\Http\Controllers\HomeController@index')->name('home');
